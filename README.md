@@ -4,7 +4,7 @@ Modal Address Book Implementation with MySQL
 
 Synopsis
 =============
-This address book was written in the Ember.js framework, and takes advantage of UI Bindings and the core Ember services.
+This address book was written in the Ember.js framework, and takes advantage of UI Bindings and the core Ember services. It leverages Python Django for server operations.
 
 Due to the relative maturity (or lack thereof) of Ember.js, a number of JS utilities were developed to manage fetch, list, and other AJAX operations.
 
