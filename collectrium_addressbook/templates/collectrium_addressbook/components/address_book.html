@@ -1,0 +1,149 @@
+{% load verbatim_templatetag %}
+
+{% if user.is_authenticated %}
+    <div class="address_book reveal-modal">
+
+        {% verbatim %}
+            <div class="row">
+
+                <div class="six columns">
+                    <h2>My Address Book</h2>
+                </div>
+
+                <script type="text/x-handlebars">
+                    {{#view App.addressbookControlView}}
+                    <div class="six columns" style="text-align: right">
+                        <form id="contact_search" action="#" method="POST">
+                            {{view Ember.TextField valueBinding="App.addressbookList.term" class="ab_filter" name="ab_filter" id="ab_filter" }}
+                            <!--<input type="text" name="ab_filter" id="ab_filter" class="ab_filter" placeholder="Search" {{ action "goSearch" on="keyDown" }} />-->
+                        </form>
+                        <div class="address_controls">
+                            <a href="#" {{action goBig}}><img src="/_resources/images/collectrium_addressbook/large_view.png" /></a>
+                            <a href="#" {{action goHome}}><img src="/_resources/images/collectrium_addressbook/small_view.png" /></a>
+                        </div>
+                    </div>
+                    {{/view}}
+                </script>
+            </div>
+        {% endverbatim %}
+
+        <div class="row">
+            <div class="twelve columns">
+                <div id="ab_alert" class="alert-box" style="display:none">
+                    <h5 id="ab_alert_title"></h5>
+                    <p id="ab_alert_message"></p>
+                    <!--<a class="close" href="">&#215;</a>-->
+                </div>
+
+            </div>
+        </div>
+
+        {% verbatim %}
+            <div class="row">
+
+                <div class="twelve columns">
+                    <script type="text/x-handlebars">
+                        {{#view App.addressbookAZ}}
+                        <ul class="alphabits block-grid">
+                            <li><a href="#" class="action" data="a">A</a></li>
+                            <li><a href="#" class="action" data="b">B</a></li>
+                            <li><a href="#" class="action" data="c">C</a></li>
+                            <li><a href="#" class="action" data="d">D</a></li>
+                            <li><a href="#" class="action" data="e">E</a></li>
+                            <li><a href="#" class="action" data="f">F</a></li>
+                            <li><a href="#" class="action" data="g">G</a></li>
+                            <li><a href="#" class="action" data="h">H</a></li>
+
+                            <li><a href="#" class="action" data="i">I</a></li>
+                            <li><a href="#" class="action" data="j">J</a></li>
+                            <li><a href="#" class="action" data="k">K</a></li>
+                            <li><a href="#" class="action" data="l">L</a></li>
+                            <li><a href="#" class="action" data="m">M</a></li>
+                            <li><a href="#" class="action" data="n">N</a></li>
+                            <li><a href="#" class="action" data="o">O</a></li>
+                            <li><a href="#" class="action" data="p">P</a></li>
+
+                            <li><a href="#" class="action" data="q">Q</a></li>
+                            <li><a href="#" class="action" data="r">R</a></li>
+                            <li><a href="#" class="action" data="s">S</a></li>
+                            <li><a href="#" class="action" data="t">T</a></li>
+                            <li><a href="#" class="action" data="u">U</a></li>
+                            <li><a href="#" class="action" data="v">V</a></li>
+                            <li><a href="#" class="action" data="w">W</a></li>
+                            <li><a href="#" class="action" data="x">X</a></li>
+                            <li><a href="#" class="action" data="y">Y</a></li>
+                            <li><a href="#" class="action" data="z">Z</a></li>
+                            <li><a href="#" class="action" data="*">*</a></li>
+                        </ul>
+                        {{/view}}
+                    </script>
+                </div>
+            </div>
+        {% endverbatim %}
+
+        {% verbatim %}
+            <div class="row">
+                <div class="twelve columns">
+                    <script type="text/x-handlebars">
+                        {{#view App.addressbookNewView}}
+                        <li><a class="action" {{ action setNew}}>Add a Contact</a><span style="width: 10px; display: inline-block;">&nbsp;</span><a class="upload" {{ action setUpload}}>Upload Contacts</a></li>
+                        {{/view}}
+                    </script>
+                </div>
+            </div>
+        {% endverbatim %}
+
+
+        <div class="address_container row">
+
+            {% verbatim %}
+                <div id="addressbookListView" class="twelve columns">
+
+                    <script type="text/x-handlebars">
+                        {{view App.addressbookListView}}
+                    </script>
+                    <script type="text/x-handlebars" data-template-name="addressbookContactView" contentBinding="Collectrium.addressbookContact">
+                        <div class="address row">
+                            <div class="three column">{{view.content.first_name_d}}</div>
+                            <div class="three column">{{view.content.last_name_d}}</div>
+                            <div class="three column">&nbsp;</div>
+                            <div class="twelve column">{{view.content.organization_name_d}}</div>
+                            <div class="twelve column email">{{view.content.email}}</div>
+                            <div {{bindAttr class="view.content.size_d" }}>{{view.content.address1_d}}</div>
+                            <div {{bindAttr class="view.content.size_d" }}>{{view.content.address2_d}}</div>
+                            <div {{bindAttr class="view.content.size_d" }}>{{view.content.phone_d}}</div>
+                            <div {{bindAttr class="view.content.size_d" }}>{{view.content.city_d}}</div>
+                            <div {{bindAttr class="view.content.size_d" }}>{{view.content.state_d}}</div>
+                            <div {{bindAttr class="view.content.size_d" }}>{{view.content.zip_d}}</div>
+                        </div>
+                        <div class="contact_controls">
+                            <a href="#" {{action doEdit}}><img src="/_resources/images/collectrium_addressbook/edit.png" /></a>
+                            <a href="#" {{action doDelete}}><img src="/_resources/images/collectrium_addressbook/delete.png" /></a>
+                        </div>
+                    </script>
+
+                    <ul class="ab_nocontacts address_list block-grid" style="display:none">
+                        <li>
+                            <ul class="address block-grid">
+                                <li>Sorry, no contacts were found</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <div class="ab_pages"><ul class="pagination"></ul></div>
+
+                </div>
+
+            {% endverbatim %}
+
+            {% include "collectrium_addressbook/forms/forms.html" %}
+
+        </div>
+
+        <div class="ab_loading loading" style="display:none">
+            <img src="/_resources/images/vvr/loading.gif"/>
+        </div>
+
+        <a class="close-reveal-modal">&#215;</a>
+    </div>
+{% endif %}
